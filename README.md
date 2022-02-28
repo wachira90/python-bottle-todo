@@ -1,10 +1,13 @@
 # python-bottle-todo
 python-bottle-todo
 
-# RUN 
+## RUN COMMAND
 
-python app-todo.py
+````
+python app_todo.py
+````
 
-# URL 
-
+## URL 
+````
 http://localhost:8080
+````
