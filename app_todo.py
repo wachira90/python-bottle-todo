@@ -1,6 +1,6 @@
 #!python
 import sqlite3
-import sys, os
+import sys, os, json
 from bottle import route, run, debug, template, request, static_file, error,redirect
 
 # only needed when you run Bottle on mod_wsgi
@@ -11,6 +11,18 @@ from bottle import default_app
 @route('/')
 def todo_main():
     redirect('/todo')
+
+
+@route('/getall')
+def get_all_data():
+    conn = sqlite3.connect('todo.db')
+    c = conn.cursor()
+    c.execute("SELECT id, task FROM todo")
+    data = c.fetchall()
+    c.close()
+    return {'data': list(data)}
+
+
 
 @route('/todo')
 def todo_list():
@@ -103,3 +115,5 @@ debug(True)
 run(reloader=True)
 # remember to remove reloader=True and debug(True) when you move your
 # application from development to a productive environment
+
+
